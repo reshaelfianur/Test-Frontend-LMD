@@ -1,0 +1,18 @@
+<div class="container-scroller">
+  <nav-header></nav-header>
+  <div class="container-fluid page-body-wrapper">
+    <nav-sidebar></nav-sidebar>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <nav-spinner *ngIf="isLoading"></nav-spinner>
+        <div contentAnimate *ngIf="!isLoading" class="h-100">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <nav-footer></nav-footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

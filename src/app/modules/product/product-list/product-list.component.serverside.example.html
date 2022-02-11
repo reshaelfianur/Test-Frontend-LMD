@@ -1,0 +1,118 @@
+<div class="page-header">
+    <h3 class="page-title">
+        {{ title }}
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ module }}</li>
+            <li aria-current="page" class="breadcrumb-item active">{{ title }}</li>
+        </ol>
+    </nav>
+</div>
+
+<ngx-spinner></ngx-spinner>
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Search Parameter</h4>
+                <form class="forms-sample" novalidate [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                    <div class="form-group">
+                        <input type="text" id="searchText" placeholder="Search Name" class="form-control"
+                            formControlName="search">
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <span>
+                    <span class="float-lg-right">
+                        <a class="btn btn-gradient-primary btn-rounded btn-sm">Add New</a>
+                    </span>
+                    <h4 class="card-title" *ngIf="dataList.length">Data</h4>
+                    <h4 class="card-title text-danger" *ngIf="!isStillLoading && dataList.length == 0">No Data Exists
+                    </h4>
+                    <h4 class="card-title" *ngIf="isStillLoading">Loading... <img
+                            src="https://i.pinimg.com/originals/5f/e0/e5/5fe0e55f8e19bc4cc3201876dce7b224.gif"
+                            height="14px"></h4>
+                </span>
+                <div class="table-responsive pt-3" *ngIf="dataList.length">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span (click)="onSort('name')">Name <i *ngIf="tableService.isAscSorted('name')"
+                                            class='mdi mdi-arrow-up-drop-circle text-success'></i><i
+                                            *ngIf="tableService.isDescSorted('name')"
+                                            class='mdi mdi-arrow-down-drop-circle text-info'></i></span>
+                                </th>
+                                <th>
+                                    <span (click)="onSort('product')">Product <i
+                                            *ngIf="tableService.isAscSorted('product')"
+                                            class='mdi mdi-arrow-up-drop-circle text-success'></i><i
+                                            *ngIf="tableService.isDescSorted('product')"
+                                            class='mdi mdi-arrow-down-drop-circle text-info'></i></span>
+                                </th>
+                                <th>
+                                    <span (click)="onSort('color')">Color<i *ngIf="tableService.isAscSorted('color')"
+                                            class='mdi mdi-arrow-up-drop-circle text-success'></i><i
+                                            *ngIf="tableService.isDescSorted('color')"
+                                            class='mdi mdi-arrow-down-drop-circle text-info'></i></span>
+                                </th>
+                                <th>
+                                    <span (click)="onSort('price')">Proce<i *ngIf="tableService.isAscSorted('price')"
+                                            class='mdi mdi-arrow-up-drop-circle text-success'></i><i
+                                            *ngIf="tableService.isDescSorted('price')"
+                                            class='mdi mdi-arrow-down-drop-circle text-info'></i></span>
+                                </th>
+
+                                <th style="width: 6em;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of dataList">
+                                <td>
+                                    {{item.name}}
+                                </td>
+                                <td>
+                                    {{item.product}}
+                                </td>
+                                <td>
+                                    {{item.color}}
+                                </td>
+                                <td>
+                                    {{item.proce}}
+                                </td>
+
+                                <td class="overflow-hidden">
+                                    <div ngbDropdown container="body">
+                                        <a (id)="item.id" ngbDropdownToggle>More</a>
+                                        <div ngbDropdownMenu (aria-labelledby)="item.id"
+                                            style="position:absolute; top:0; left:0;">
+                                            <button (click)="onDetail(item)" ngbDropdownItem>Detail</button>
+                                            <button (click)="onEdit(item)" ngbDropdownItem>Update</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <ng-container *ngIf="dataList">
+                    <ng-container *ngIf="tableService.getNumberOfPages() > 1">
+                        <ngb-pagination [collectionSize]="tableService.documentSize" [(page)]="tableService.pageNumber"
+                            [pageSize]="tableService.pageSize" (pageChange)="onChangePage($event)">
+                        </ngb-pagination>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

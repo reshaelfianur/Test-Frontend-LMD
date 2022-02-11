@@ -1,0 +1,87 @@
+<div class="page-header">
+    <h3 class="page-title">
+        {{ title }}
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{ module }}</li>
+            <li aria-current="page" class="breadcrumb-item active">{{ title }}</li>
+        </ol>
+    </nav>
+</div>
+
+<ngx-spinner></ngx-spinner>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <span>
+                    <span class="float-lg-right">
+                        <a class="btn btn-gradient-secondary btn-rounded btn-sm">Add New</a>
+                    </span>
+                    <h4 class="card-title" *ngIf="dataList?.length">Data</h4>
+                    <h4 class="card-title text-danger" *ngIf="!isStillLoading && dataList?.length == 0">No Data Exists
+                    </h4>
+                    <h4 class="card-title" *ngIf="isStillLoading">Loading... <img
+                            src="https://i.pinimg.com/originals/5f/e0/e5/5fe0e55f8e19bc4cc3201876dce7b224.gif"
+                            height="14px"></h4>
+                </span>
+                <div class="table-responsive pt-3" *ngIf="dataList?.length">
+                    <table class="table table-striped table-bordered table-sm row-border hover" datatable
+                        [dtOptions]="dtOptions">
+                        <thead>
+                            <tr>
+                                <th width="5%">No</th>
+                                <th>Name</th>
+                                <th>Product</th>
+                                <th>Material</th>
+                                <th>Adjective</th>
+                                <th>Color</th>
+                                <th>Price</th>
+                                <!-- <th></th> -->
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="!isStillLoading">
+                            <tr *ngFor="let item of dataList; let i = index">
+                                <td>
+                                    {{ i + 1 }}
+                                </td>
+                                <td>
+                                    <a class="cursor-pointer" (id)="item.id" (click)="onDetailModal(item)">{{ item.name
+                                        }}</a>
+                                </td>
+                                <td>
+                                    {{ item.product }}
+                                </td>
+                                <td>
+                                    {{ item.material }}
+                                </td>
+                                <td>
+                                    {{ item.adjective }}
+                                </td>
+                                <td>
+                                    {{ item.color }}
+                                </td>
+                                <td class="text-right">
+                                    {{ item.price | currency }}
+                                </td>
+
+                                <!-- <td class="overflow-hidden text-center">
+                                    <div ngbDropdown container="body">
+                                        <a (id)="item.id" ngbDropdownToggle>More</a>
+                                        <div ngbDropdownMenu (aria-labelledby)="item.id"
+                                            style="position:absolute; top:0; left:0;">
+                                            <button (click)="onDetailModal(item)" ngbDropdownItem>Detail</button>
+                                            <button (click)="onEdit(item)" ngbDropdownItem>Update</button>
+                                        </div>
+                                    </div>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

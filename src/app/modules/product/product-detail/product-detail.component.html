@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <img class="rounded border-secondary w-100" [src]="columns.image" alt="product image" />
+
+    <div class="h3 text-muted font-weight-bolder">
+        <div class=" column-name">
+            {{ columns.name }}
+            <span class="float-right">{{ columns.price | currency }}</span>
+        </div>
+    </div>
+
+    <div class="column-description">{{ columns.description }}
+        <ul class="column-detail">
+            <ng-container *ngFor="let item of columns | keyvalue">
+                <ng-container
+                    *ngIf="item.key == 'adjective' || item.key == 'color' || item.key == 'material'|| item.key == 'product'">
+                    <li>{{ item.key }} : {{ item.value }}</li>
+                </ng-container>
+            </ng-container>
+        </ul>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="update()">Update</button>
+    <button type="button" class="btn btn-light" (click)="close()">Close</button>
+</div>
