@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DataTablesModule } from 'angular-datatables';
 
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -12,7 +13,7 @@ import { TaskComponent } from './task/task/task.component';
 
 const taskManagementRoutes: Routes = [
   {
-    path: '',
+    path: 'task',
     component: TaskComponent
   }
 ];
@@ -27,6 +28,7 @@ const taskManagementRoutes: Routes = [
     NgxSpinnerModule,
     DataTablesModule,
     ReactiveFormsModule,
+    NgBootstrapFormValidationModule,
     RouterModule.forChild(taskManagementRoutes)
   ]
 })

@@ -39,7 +39,7 @@ import { ConfirmationDialogService } from 'src/app/additional/confirmation-dialo
     BrowserAnimationsModule,
     NgBootstrapFormValidationModule.forRoot(),
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-top-right'
     })
   ],
   providers: [ConfirmationDialogService],

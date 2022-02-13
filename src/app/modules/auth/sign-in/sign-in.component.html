@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-atom" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
 <div class="d-flex align-items-center auth px-0">
     <div class="row w-100 mx-0">
         <div class="col-lg-4 mx-auto">
@@ -10,7 +14,7 @@
                 <form class="pt-3" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                            <input type="text" class="form-control" placeholder="Username Or Email" formControlName="username_or_email"
                                 autofocus>
                             <div class="input-group-append">
                                 <span class="input-group-text">

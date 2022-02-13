@@ -2,6 +2,7 @@ import { Router } from '@angular/router'
 import { Injectable } from "@angular/core";
 
 import { SessionService } from './session.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AutoLogoutService {
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     private sessionService: SessionService
   ) {
     this.check();
@@ -57,10 +59,10 @@ export class AutoLogoutService {
     const isTimeout = diff < 0;
 
     if (isTimeout) {
-      this.sessionService.logout();
+      this.authService.signOut();
 
-      window.location.href = location.origin;
-      return;
+      // window.location.href = location.origin;
+      // return;
     }
   }
 

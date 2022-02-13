@@ -1,15 +1,15 @@
 <div class="container-scroller">
-  <nav-header></nav-header>
+  <app-navbar></app-navbar>
   <div class="container-fluid page-body-wrapper">
-    <nav-sidebar></nav-sidebar>
+    <app-sidebar></app-sidebar>
     <div class="main-panel">
       <div class="content-wrapper">
-        <nav-spinner *ngIf="isLoading"></nav-spinner>
+        <app-spinner *ngIf="isLoading"></app-spinner>
         <div contentAnimate *ngIf="!isLoading" class="h-100">
           <router-outlet></router-outlet>
         </div>
       </div>
-      <nav-footer></nav-footer>
+      <app-footer></app-footer>
       <!-- partial -->
     </div>
     <!-- main-panel ends -->

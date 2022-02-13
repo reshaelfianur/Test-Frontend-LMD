@@ -6,6 +6,7 @@ import { FullLayoutComponent } from './layouts/full-layout/full-layout.component
 import { ErrorFourOFourComponent } from './layouts/error-four-o-four/error-four-o-four.component';
 
 import { GuardService } from './core/services/guard.service';
+import { ErrorFiveOOComponent } from './layouts/error-five-o-o/error-five-o-o.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)
       }
     ]
+  },
+  {
+    path: '500', pathMatch: 'full',
+    component: ErrorFiveOOComponent
   },
   {
     path: '**', pathMatch: 'full',

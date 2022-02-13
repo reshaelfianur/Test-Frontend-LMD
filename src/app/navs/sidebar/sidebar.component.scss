@@ -1,28 +1,17 @@
 /* Sidebar */
 
-@import "src/styles.scss";
-$cust-sidebar-bg: #0e7198;
-
+@import '../../../styles.scss';
 .sidebar {
   min-height: calc(100vh - #{$navbar-height});
-  // background: $sidebar-bg;
-  background: $cust-sidebar-bg;
+  background: $sidebar-bg;
   font-family: $type1-regular;
   padding: 0;
   width: $sidebar-width-lg;
   z-index: 11;
-  transition: width $action-transition-duration
-      $action-transition-timing-function,
-    background $action-transition-duration $action-transition-timing-function;
-  -webkit-transition: width $action-transition-duration
-      $action-transition-timing-function,
-    background $action-transition-duration $action-transition-timing-function;
-  -moz-transition: width $action-transition-duration
-      $action-transition-timing-function,
-    background $action-transition-duration $action-transition-timing-function;
-  -ms-transition: width $action-transition-duration
-      $action-transition-timing-function,
-    background $action-transition-duration $action-transition-timing-function;
+  transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
+  -webkit-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
+  -moz-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
+  -ms-transition: width $action-transition-duration $action-transition-timing-function, background $action-transition-duration $action-transition-timing-function;
   height: 100%;
 
   .nav {
@@ -34,7 +23,7 @@ $cust-sidebar-bg: #0e7198;
     }
 
     .nav-item {
-      padding: 0 $sidebar-menu-padding-x;
+      padding:0 $sidebar-menu-padding-x;
       @include transition-duration(0.25s);
       transition-property: background;
       -webkit-transition-property: background;
@@ -46,7 +35,7 @@ $cust-sidebar-bg: #0e7198;
         @include display-flex;
         @include align-items(center);
         white-space: nowrap;
-        padding: $sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
+        padding:$sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
         color: $sidebar-menu-color;
         @include transition-duration(0.45s);
         transition-property: color;
@@ -80,17 +69,17 @@ $cust-sidebar-bg: #0e7198;
               margin-right: auto;
             }
             color: $sidebar-menu-arrow-color;
-            &:before {
+            &:before{
               content: "\f0141";
               font-size: inherit;
               color: inherit;
             }
             + .menu-icon {
-              margin-left: 0.25rem;
-              margin-bottom: 0.25rem;
+              margin-left: .25rem;
+              margin-bottom: .25rem;
               .rtl & {
                 margin-left: 0;
-                margin-right: 0.25rem;
+                margin-right: .25rem;
               }
             }
           }
@@ -109,9 +98,9 @@ $cust-sidebar-bg: #0e7198;
           margin-left: 1rem;
         }
 
-        &[aria-expanded="true"] {
-          .menu-arrow {
-            &:before {
+        &[aria-expanded="true"]{
+          .menu-arrow{
+            &:before{
               content: "\F0140";
             }
           }
@@ -121,9 +110,8 @@ $cust-sidebar-bg: #0e7198;
       &.active {
         .nav-link {
           .menu-title {
-            // color: $sidebar-menu-active-color;
-            color: lighten($sidebar-menu-active-color, 20%);
-            font-family: $type1-medium;
+            color: $sidebar-menu-active-color;
+            font-family: $type1-medium;            
           }
           i {
             color: theme-color(primary);
@@ -131,9 +119,8 @@ $cust-sidebar-bg: #0e7198;
         }
       }
 
-      &:hover {
-        // background: $sidebar-menu-hover-bg;
-        background: darken($color: $cust-sidebar-bg, $amount: 1%);
+      &:hover{
+        background: $sidebar-menu-hover-bg;
       }
       &.nav-profile {
         .nav-link {
@@ -198,7 +185,7 @@ $cust-sidebar-bg: #0e7198;
     }
     &.sub-menu {
       margin-bottom: 20px;
-      margin-top: 0;
+      margin-top:0;
       list-style: none;
 
       .nav-item {
@@ -211,8 +198,7 @@ $cust-sidebar-bg: #0e7198;
           line-height: 1;
           height: auto;
           border-top: 0;
-
-          /* &:before {
+          &:before {
             content: "\F054";
             font-family: "Material Design Icons";
             display: block;
@@ -226,7 +212,7 @@ $cust-sidebar-bg: #0e7198;
             @include transform(translateY(-50%));
             color: lighten($sidebar-submenu-color, 10%);
             font-size: .75rem;
-          } */
+          }
           &.active {
             color: $sidebar-menu-active-color;
             background: transparent;
@@ -243,9 +229,10 @@ $cust-sidebar-bg: #0e7198;
   }
 }
 
+
 // Sidebar icon only layout start
 :host-context(.sidebar-icon-only) {
-  @media (min-width: 992px) {
+  @media(min-width: 992px) {
     .sidebar {
       width: $sidebar-width-icon;
       .nav {
@@ -257,13 +244,12 @@ $cust-sidebar-bg: #0e7198;
           position: relative;
           .nav-link {
             display: block;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
+            padding-left: .5rem;
+            padding-right: .5rem;            
             text-align: center;
             position: static;
             .menu-title,
-            .badge,
-            .menu-sub-title {
+            .badge,.menu-sub-title {
               display: none;
             }
             .menu-title {
@@ -305,7 +291,7 @@ $cust-sidebar-bg: #0e7198;
                 z-index: 1;
                 line-height: 1.8;
                 -webkit-box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
-                box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
+                        box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);              
                 &:after {
                   display: none;
                 }
@@ -320,11 +306,11 @@ $cust-sidebar-bg: #0e7198;
               left: $sidebar-width-icon;
               width: $icon-only-collapse-width;
               -webkit-box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
-              box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
+                      box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
             }
           }
           &.nav-profile {
-            padding: 0 0.3rem;
+            padding: 0 .3rem;
             .nav-link {
               .nav-profile-text {
                 display: none;
@@ -362,6 +348,7 @@ $cust-sidebar-bg: #0e7198;
 }
 // Sidebar icon only layout end
 
+
 /* style for off-canvas menu*/
 @media screen and (max-width: 991px) {
   .sidebar-offcanvas {
@@ -377,11 +364,5 @@ $cust-sidebar-bg: #0e7198;
     &.active {
       right: 0;
     }
-  }
-}
-
-@media print {
-  nav.sidebar * {
-    display: none;
   }
 }

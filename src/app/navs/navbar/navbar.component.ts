@@ -9,12 +9,12 @@ import { User } from 'src/app/core/user/user.types';
 import { ConfirmationDialogService } from 'src/app/additional/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
-  selector: 'nav-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
   providers: [NgbDropdownConfig]
 })
-export class HeaderComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
   public iconOnlyToggled: boolean = false;
   public sidebarToggled: boolean = false;
@@ -67,12 +67,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  logout() {
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to logout?')
+  signOut() {
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to signout?')
       .then((confirmed) => {
         if (confirmed) {
-          this.authService.logout()
-          this.router.navigate(['/auth/sign-in']);
+          this.authService.signOut();
         }
       })
   }

@@ -1,19 +1,19 @@
 <div class="row">
-    <div class="col-md-6 stretch-card grid-margin">
+    <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-danger card-img-holder text-white">
             <div class="card-body">
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                <h4 class="font-weight-normal mb-3">Products
+                <h4 class="font-weight-normal mb-3">Tasks
                     <i class="mdi mdi-account-reactivate mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-5">
-                    {{ products }}
+                    {{ tasks }}
                 </h2>
-                <h6 class="card-text">Number of Products</h6>
+                <h6 class="card-text">Number of Tasks</h6>
             </div>
         </div>
     </div>
-    <div class="col-md-6 stretch-card grid-margin">
+    <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-info card-img-holder text-white">
             <div class="card-body">
                 <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
@@ -24,6 +24,18 @@
                     {{ users }}
                 </h2>
                 <h6 class="card-text">Number of users</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 stretch-card grid-margin">
+        <div class="card bg-gradient-success card-img-holder text-white">
+            <div class="card-body">
+                <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                <h4 class="font-weight-normal mb-3">Roles
+                    <i class="mdi mdi-account-key mdi-24px float-right"></i>
+                </h4>
+                <h2 class="mb-5">{{ roles }}</h2>
+                <h6 class="card-text">Number Of Roles</h6>
             </div>
         </div>
     </div>

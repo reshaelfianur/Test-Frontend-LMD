@@ -3,19 +3,19 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { HeaderComponent } from './header.component';
+import { NavbarComponent } from './navbar.component';
 import { SessionService } from 'src/app/core/services/session.service';
 
-describe('HeaderComponent', () => {
+describe('NavbarComponent', () => {
   let sessionService: jasmine.SpyObj<SessionService>;
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
 
   beforeEach(waitForAsync(() => {
     const sessionServiceSpy = jasmine.createSpyObj('SessionService', ['getUser']);
 
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
+      declarations: [NavbarComponent],
       imports: [
         RouterTestingModule,
         HttpClientTestingModule
@@ -35,7 +35,7 @@ describe('HeaderComponent', () => {
       avatar: 'https://cdn.fakercloud.com/avatars/mcflydesign_128.jpg',
     });
 
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

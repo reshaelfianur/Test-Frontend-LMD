@@ -12,9 +12,7 @@ import { SessionService } from './session.service';
 })
 export class CommonService {
 
-	public extraData: any;
-	public message: string;
-	public originalResult: any;
+	private extraData: any;
 
 	constructor(
 		private http: HttpClient,
@@ -45,10 +43,6 @@ export class CommonService {
 
 	public getExtraData(key: any) {
 		return this.extraData[key];
-	}
-
-	public getMessage() {
-		return this.message;
 	}
 
 	public getDb() {
@@ -86,22 +80,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -124,22 +109,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -160,22 +136,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -194,22 +161,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -228,22 +186,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -262,22 +211,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -288,7 +228,7 @@ export class CommonService {
 	public delete(key: string, params: string): Observable<any> {
 		return new Observable(observer => {
 
-			const url = `${this.sessionService.server}/${key}${params}/destroy`;
+			const url = `${this.sessionService.server}/${key}/destroy${params}`;
 
 			this.spinner.show();
 
@@ -296,11 +236,9 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
 
-					observer.next(false);
+					observer.next(respond);
 					observer.complete();
 
 					return (observer).unsubscribe();
@@ -308,7 +246,7 @@ export class CommonService {
 
 				this.regenerateAuth(respond);
 
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -327,22 +265,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -369,22 +298,13 @@ export class CommonService {
 				this.spinner.hide();
 
 				if (!respond.status) {
-					this.message = respond.message;
-
 					this.checkAutoLogout(respond);
-
-					observer.next(false);
-					observer.complete();
-
-					return (observer).unsubscribe();
+				} else {
+					this.regenerateAuth(respond);
+					this.extractData(respond);
 				}
 
-				this.originalResult = respond;
-
-				this.regenerateAuth(respond);
-				this.extractData(respond);
-
-				observer.next(respond.data);
+				observer.next(respond);
 				observer.complete();
 
 				return (observer).unsubscribe();
@@ -394,10 +314,14 @@ export class CommonService {
 
 	public checkAutoLogout(respond: any) {
 		if (respond.logout) {
-			this.sessionService.logout();
+			const url = `${this.sessionService.server}/auth/sign-out`;
 
-			window.location.href = location.origin;
-			return;
+			this.http.post(url, {}, { headers: this.sessionService.postHeader() }).subscribe((respond: any) => {
+				this.sessionService.signOut();
+
+				window.location.href = location.origin;
+				return;
+			});
 		}
 	}
 

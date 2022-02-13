@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -13,7 +13,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
   declarations: [
     SidebarComponent,
     FooterComponent,
-    HeaderComponent,
+    NavbarComponent,
     SpinnerComponent],
   imports: [
     CommonModule,
@@ -23,7 +23,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
   exports: [
     SidebarComponent,
     FooterComponent,
-    HeaderComponent,
+    NavbarComponent,
     SpinnerComponent
   ]
 })

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProductService } from 'src/app/services/product.service';
+import { TaskService } from 'src/app/services/task.service';
+import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
+
+import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,26 +13,41 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  public products: number = 0;
+  public tasks: number = 0;
   public users: number = 0;
+  public roles: number = 0;
+
+  public accessRights: any = null;
 
   constructor(
-    private productService: ProductService,
+    private sessionService: SessionService,
+    private taskService: TaskService,
+    private roleService: RoleService,
     private userService: UserService
   ) {
-
+    this.accessRights = this.sessionService.getAccessRights();
   }
 
   ngOnInit(): void {
-    // this.countProducts();
-    // this.countUsers();
+    this.countTasks();
+    this.countRoles();
+    this.countUsers();
   }
 
-  countProducts(): void {
-    this.productService.list().subscribe(respond => {
+  countTasks(): void {
+    let args: null | any = this.accessRights.role.id == 1 ? null : `?created_by=${this.accessRights.user.user_id}`;
 
+    this.taskService.list(args).subscribe(respond => {
       if (respond) {
-        this.products = respond.length;
+        this.tasks = respond.data.length;
+      }
+    });
+  }
+
+  countRoles(): void {
+    this.roleService.list().subscribe(respond => {
+      if (respond) {
+        this.roles = respond.data.length;
       }
     });
   }
@@ -37,7 +55,7 @@ export class DashboardComponent implements OnInit {
   countUsers(): void {
     this.userService.list().subscribe(respond => {
       if (respond) {
-        this.users = respond.length;
+        this.users = respond.data.length;
       }
     });
   }

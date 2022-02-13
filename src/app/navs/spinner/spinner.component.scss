@@ -1,4 +1,5 @@
-@import "src/styles.scss";
+
+@import "../../../styles.scss";
 
 .spinner-wrapper {
   display: flex;
@@ -22,13 +23,13 @@
 
 :host-context(.sidebar-icon-only) {
   .spinner-wrapper {
-    width: calc(100% - #{$sidebar-width-icon} - 4rem);
+    width: calc(100% - #{$sidebar-width-icon} - 4rem);    
   }
 }
 
 :host-context(.sidebar-mini) {
   .spinner-wrapper {
-    width: calc(100% - #{$sidebar-width-mini} - 4rem);
+    width: calc(100% - #{$sidebar-width-mini} - 4rem);    
   }
 }
 

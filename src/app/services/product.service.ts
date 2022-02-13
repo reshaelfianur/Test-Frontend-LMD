@@ -10,10 +10,6 @@ export class ProductService {
 
   constructor(private _commonService: CommonService) { }
 
-  message() {
-    return this._commonService.message;
-  }
-
   list(params?: string) {
     return this._commonService.list(this.key, params);
   }

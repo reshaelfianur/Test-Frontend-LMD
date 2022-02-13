@@ -4,9 +4,9 @@ import { CommonService } from 'src/app/core/services/common.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
+export class RoleService {
 
-  private key: string = 'task-management/task';
+  private key: string = 'user-management/role';
 
   constructor(private _commonService: CommonService) { }
 
@@ -40,10 +40,6 @@ export class TaskService {
 
   unique(params: string) {
     return this._commonService.taskGet(this.key, "unique", params);
-  }
-
-  findInvalidControls(control: any) {
-    return this._commonService.findInvalidControlsRecursive(control);
   }
 
 }

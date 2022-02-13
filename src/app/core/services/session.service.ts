@@ -116,14 +116,18 @@ export class SessionService {
 		return btoa(JSON.stringify(this.getAccessRights()));
 	}
 
-	public setAuthentication(userId: string, loginId: string, db?: string | null) {
+	public setAuthentication(userId: string, loginId: string, db?: string | null, custom: boolean = false) {
 		sessionStorage.setItem("__userId", this.encrypt(userId.toString())); // add toString for id integer
 		sessionStorage.setItem("__loginId", this.encrypt(loginId));
 
-		if (db == undefined || db == null) {
-			sessionStorage.setItem("__bearer", this.encrypt(btoa(userId + ":" + loginId)));
+		if (custom) {
+			if (db == undefined || db == null) {
+				sessionStorage.setItem("__bearer", this.encrypt(btoa(userId + ":" + loginId)));
+			} else {
+				sessionStorage.setItem("__bearer", this.encrypt(btoa(userId + ":" + loginId + ":" + db)));
+			}
 		} else {
-			sessionStorage.setItem("__bearer", this.encrypt(btoa(userId + ":" + loginId + ":" + db)));
+			sessionStorage.setItem("__bearer", this.encrypt(loginId));
 		}
 	}
 
@@ -149,7 +153,7 @@ export class SessionService {
 		return JSON.parse(__user);
 	}
 
-	public logout() {
+	public signOut() {
 		sessionStorage.clear();
 	}
 

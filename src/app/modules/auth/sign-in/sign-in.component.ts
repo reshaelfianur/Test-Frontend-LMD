@@ -5,7 +5,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { UserService } from 'src/app/core/user/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CommonService } from 'src/app/core/services/common.service';
 import { SessionService } from 'src/app/core/services/session.service';
@@ -55,7 +55,7 @@ export class AuthSignInComponent implements OnInit {
 
     private initForm(): void {
         this.form = new FormGroup({
-            email: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+            username_or_email: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
             password: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
         });
     }
@@ -80,19 +80,26 @@ export class AuthSignInComponent implements OnInit {
 
         const data = this.form.value;
 
-        this.authService.login(data.email, data.password).subscribe((output) => {
-            this.spinner.hide();
+        this.authService.signIn(data.username_or_email, data.password).subscribe((signInRes: any) => {
+            if (!signInRes.status) {
+                this.spinner.hide();
 
-            if (!output) {
-                this.toastr.error('Username and Password does not match!');
+                this.toastr.error(signInRes.message);
                 return;
             }
 
-            this.toastr.success('Login Success');
-            this.router.navigate(['/dashboard']);
+            this.userService.getAccessRights(`?user_id=${signInRes.data.user.user_id}`).subscribe((acccessRightsRes: any) => {
+                this.spinner.hide();
+                
+                if (acccessRightsRes.status) {
+                    this.sessionService.setAccessRights(acccessRightsRes.data);
 
-            this.sessionService.save(this.storeKey, Date.now().toString());
-            this.sessionService.save('cc', btoa(JSON.stringify(data.company_code)))
+                    this.toastr.success(acccessRightsRes.message, `Welcome ${signInRes.data.user.user_full_name}`);
+                    this.router.navigate(['/dashboard']);
+
+                    this.sessionService.save(this.storeKey, Date.now().toString());
+                }
+            });
         });
     }
 
